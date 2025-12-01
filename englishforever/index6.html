@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Forever - Transformando Oportunidades Através do Inglês</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-blue: #0a2463;
+            --medium-blue: #1e3a8a;
+            --light-blue: #3b82f6;
+            --white: #ffffff;
+            --red: #e63946;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo .highlight {
+            color: var(--red);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            color: var(--red);
+            border-bottom: 2px solid var(--red);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 36, 99, 0.9), rgba(10, 36, 99, 0.8)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 10rem 0 6rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #c1121f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(230, 57, 70, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-blue);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--red);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-blue);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-vision-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-card {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--red);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Courses & Services */
+        .courses-grid, .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .course-card, .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .course-card:hover, .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-icon, .service-icon {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            font-size: 2.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .course-content, .service-content {
+            padding: 1.5rem;
+        }
+        
+        .course-content h3, .service-content h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light-gray);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: "“";
+            font-size: 5rem;
+            color: var(--red);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--dark-blue);
+        }
+        
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item i {
+            color: var(--red);
+            font-size: 1.2rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--red);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--red);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-blue);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>ENGLISH <span class="highlight">FOREVER</span></h1>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#courses">Cursos</a></li>
+                    <li><a href="#translation">Tradução</a></li>
+                    <li><a href="#interpretation">Interpretação</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Aprenda Inglês. Eleve o Seu Futuro. Viva Novas Oportunidades.</h2>
+            <p>Cursos completos de inglês, tradução juramentada e serviços profissionais de interpretação — tudo num só lugar.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Inscreva-se Agora</a>
+                <a href="#translation" class="btn btn-secondary">Solicitar Tradução Juramentada</a>
+                <a href="#interpretation" class="btn btn-secondary">Reservar Serviço de Interpretação</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Quem Somos</h2>
+            <p class="section-subtitle">Transformando Oportunidades Através do Inglês e da Comunicação Profissional</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A English Forever</h3>
+                    <p>A English Forever é uma escola de inglês moderna, prática e focada em resultados reais. Atuamos com metodologias dinâmicas, professores qualificados e programas estruturados para atender crianças, jovens, adultos e profissionais que desejam usar o inglês como ferramenta de crescimento pessoal, académico e empresarial.</p>
+                    <p>Também oferecemos serviços profissionais de tradução juramentada, tradução técnica e interpretação, garantindo precisão, qualidade e confiança para empresas e particulares.</p>
+                </div>
+                
+                <div class="mission-vision-values">
+                    <div class="value-card">
+                        <h3>Nossa Missão</h3>
+                        <p>Ajudar pessoas e empresas a alcançarem novas oportunidades através da comunicação em inglês com excelência.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Nossa Visão</h3>
+                        <p>Ser referência no sul de Angola em ensino de inglês e serviços linguísticos profissionais.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Nossos Valores</h3>
+                        <p>Excelência, Compromisso, Integridade, Profissionalismo, Aprendizado contínuo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Nossos Cursos</h2>
+            <p class="section-subtitle">Oferecemos cursos para todas as idades e necessidades, com metodologias práticas e focadas na comunicação real.</p>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Inglês Geral (Kids, Teens & Adults)</h3>
+                        <p>Aulas para todos os níveis, com foco em comunicação, vocabulário ativo, conversação prática e confiança no uso do inglês no dia a dia.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Inglês Intensivo</h3>
+                        <p>Para quem tem pressa e quer resultados rápidos. Programas acelerados com foco total na fala, compreensão e uso funcional da língua.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>English for Business</h3>
+                        <p>Curso voltado para profissionais, empreendedores e executivos que precisam usar inglês em reuniões, negociações, e-mails, viagens e comunicação corporativa.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Aulas em Empresas (In-Company)</h3>
+                        <p>Treinamentos personalizados para equipas corporativas, com módulos de comunicação profissional, apresentações, atendimento ao cliente e inglês técnico.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Aulas ao Domicílio e Aulas Externas</h3>
+                        <p>Aprenda no conforto da sua casa, empresa ou local escolhido. Flexibilidade total para a sua rotina.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Preparação para Entrevistas, Viagens e Estudos no Exterior</h3>
+                        <p>Simulações, vocabulário específico, orientações práticas e treinamento intensivo para situações reais.</p>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Workshops – Level Up Your English</h3>
+                        <p>Eventos especiais totalmente em inglês, focados em conversação, networking e experiências linguísticas imersivas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Translation Services -->
+    <section id="translation">
+        <div class="container">
+            <h2 class="section-title">Serviços de Tradução</h2>
+            <p class="section-subtitle">Oferecemos serviços profissionais de tradução com precisão, sigilo e qualidade garantida.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Tradução Juramentada</h3>
+                        <p>Serviço oficial, com validade legal, para documentos como:</p>
+                        <ul>
+                            <li>Certidões</li>
+                            <li>Diplomas e históricos académicos</li>
+                            <li>Contratos</li>
+                            <li>Documentos pessoais e empresariais</li>
+                            <li>Documentação para processos no exterior</li>
+                        </ul>
+                        <p><strong>Precisão, sigilo, credibilidade.</strong></p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Solicitar Tradução</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Tradução Técnica e Comercial</h3>
+                        <p>Tradução especializada para empresas e instituições:</p>
+                        <ul>
+                            <li>Relatórios</li>
+                            <li>Propostas comerciais</li>
+                            <li>Materiais corporativos</li>
+                            <li>Guias, manuais, políticas internas</li>
+                            <li>Websites e apresentações</li>
+                        </ul>
+                        <p><strong>Qualidade profissional e pronta para uso.</strong></p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Solicitar Tradução</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interpretation Services -->
+    <section id="interpretation" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Serviços de Interpretação</h2>
+            <p class="section-subtitle">Interpretação profissional para eventos, reuniões e situações que exigem comunicação precisa e fluida.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Interpretação Simultânea</h3>
+                        <p>Ideal para conferências, fóruns, workshops, reuniões online e eventos corporativos.</p>
+                        <p><strong>Rapidez, clareza e fidelidade.</strong></p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Reservar Serviço</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Interpretação Consecutiva</h3>
+                        <p>Para reuniões, entrevistas, visitas guiadas, negociações e encontros de negócios.</p>
+                        <p><strong>Comunicação natural e profissional entre as partes.</strong></p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Reservar Serviço</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Interpretação Online</h3>
+                        <p>Serviço remoto para empresas e organizações que exigem agilidade e precisão.</p>
+                        <p><strong>Via Zoom, Meet, Teams ou outras plataformas.</strong></p>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Reservar Serviço</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">O Que Dizem Os Nossos Alunos e Clientes</h2>
+            <p class="section-subtitle">Depoimentos de quem já transformou oportunidades através do inglês com a English Forever.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"Aprender na English Forever mudou completamente a minha confiança. Hoje consigo participar em reuniões internacionais sem medo e até fiz uma apresentação em inglês para toda a equipa da minha empresa!"</p>
+                    <p><strong>Maria Silva</strong><br>Profissional de Marketing</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Excelente escola, professores dedicados e metodologia prática. Em apenas 6 meses consegui melhorar significativamente minha fluência e hoje já consigo acompanhar filmes sem legendas!"</p>
+                    <p><strong>João Mendes</strong><br>Estudante Universitário</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"O serviço de tradução juramentada foi rápido, seguro e totalmente profissional. Precisava de traduzir documentos para um processo de visto e a English Forever resolveu tudo com eficiência e discrição."</p>
+                    <p><strong>Ana Pereira</strong><br>Cliente de Tradução Juramentada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team (Optional) -->
+    <section id="team" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Nossa Equipa</h2>
+            <p class="section-subtitle">Profissionais qualificados e dedicados à sua aprendizagem e sucesso.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar" style="background-color: var(--dark-blue); color: white; width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1rem;">QT</div>
+                    <h3>Teacher Quintas</h3>
+                    <p>Fundador & Diretor Geral</p>
+                    <p>Especialista em ensino comunicativo com mais de 10 anos de experiência.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar" style="background-color: var(--medium-blue); color: white; width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1rem;">MP</div>
+                    <h3>Professora Maria</h3>
+                    <p>Coordenadora Pedagógica</p>
+                    <p>Especialista em preparação para exames internacionais e Business English.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-avatar" style="background-color: var(--red); color: white; width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1rem;">TR</div>
+                    <h3>Equipa de Tradutores</h3>
+                    <p>Tradutores Juramentados</p>
+                    <p>Profissionais especializados em tradução técnica, comercial e juramentada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contacte-nos</h2>
+            <p class="section-subtitle">Estamos prontos para ajudar você ou sua empresa a alcançar novos patamares através do inglês.</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informações de Contacto</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Lubango, Angola</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda a sexta: 07h00 – 19h15</p>
+                            <p>Sábado: 08h00 – 11h00 / 15h00 – 17h10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Telefone / WhatsApp</h4>
+                            <p>+244 973 083 359</p>
+                            <p>+244 939150710</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p>englishforevernopt@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envie-nos uma mensagem</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Seu nome" required>
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <input type="tel" placeholder="Seu telefone">
+                        <select required>
+                            <option value="" disabled selected>Selecione o serviço de interesse</option>
+                            <option value="curso">Curso de Inglês</option>
+                            <option value="traducao">Tradução Juramentada</option>
+                            <option value="interpretacao">Serviço de Interpretação</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <textarea placeholder="Sua mensagem" required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>ENGLISH <span style="color: var(--red);">FOREVER</span></h2>
+                    <p>Transformando Oportunidades Através do Inglês e da Comunicação Profissional.</p>
+                    <p>Learn Faster. Grow Further.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#courses">Cursos</a></li>
+                        <li><a href="#translation">Tradução</a></li>
+                        <li><a href="#interpretation">Interpretação</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-phone-alt"></i> +244 973 083 359</p>
+                    <p><i class="fas fa-envelope"></i> englishforevernopt@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Lubango, Angola</p>
+                    
+                    <div class="cta-buttons" style="margin-top: 1.5rem; justify-content: flex-start;">
+                        <a href="#contact" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Inscreva-se Agora</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 English Forever. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Obrigado pela sua mensagem! Entraremos em contacto em breve.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
