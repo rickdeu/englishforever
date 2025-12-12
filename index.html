@@ -412,6 +412,149 @@
             font-style: italic;
         }
         
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--white);
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--medium-blue);
+            color: var(--white);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 36, 99, 0.9));
+            color: var(--white);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-overlay h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Modal for enlarged image */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(10, 36, 99, 0.7);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-prev {
+            left: -70px;
+        }
+        
+        .modal-next {
+            right: -70px;
+        }
+        
         /* Contact */
         .contact-content {
             display: grid;
@@ -582,6 +725,24 @@
             .slide-overlay h3 {
                 font-size: 2rem;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .modal-prev {
+                left: -50px;
+            }
+            
+            .modal-next {
+                right: -50px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -659,6 +820,18 @@
             .slide-overlay p {
                 font-size: 1.1rem;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 200px;
+            }
+            
+            .modal-prev, .modal-next {
+                display: none;
+            }
         }
         
         @media (max-width: 576px) {
@@ -699,6 +872,24 @@
             .slide-overlay p {
                 font-size: 1rem;
             }
+            
+            .gallery-filters {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .gallery-item {
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -709,7 +900,6 @@
             <div class="logo">
                 <!-- Logo será substituído por imagem -->
                 <img src="img/logo.png" alt="English Forever Logo">
-
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -724,6 +914,7 @@
                         <li><a href="#courses" data-lang-pt="Cursos" data-lang-en="Courses">Cursos</a></li>
                         <li><a href="#translation" data-lang-pt="Tradução" data-lang-en="Translation">Tradução</a></li>
                         <li><a href="#interpretation" data-lang-pt="Interpretação" data-lang-en="Interpretation">Interpretação</a></li>
+                        <li><a href="#gallery" data-lang-pt="Galeria" data-lang-en="Gallery">Galeria</a></li>
                         <li><a href="#testimonials" data-lang-pt="Depoimentos" data-lang-en="Testimonials">Depoimentos</a></li>
                         <li><a href="#contact" data-lang-pt="Contacto" data-lang-en="Contact">Contacto</a></li>
                     </ul>
@@ -1010,6 +1201,65 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title" data-lang-pt="Galeria de Fotos" data-lang-en="Photo Gallery">Galeria de Fotos</h2>
+            <p class="section-subtitle" data-lang-pt="Momentos especiais, aulas dinâmicas e eventos da English Forever" data-lang-en="Special moments, dynamic classes and English Forever events">Momentos especiais, aulas dinâmicas e eventos da English Forever</p>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <span data-lang-pt="Todas as Fotos" data-lang-en="All Photos">Todas as Fotos</span>
+                </button>
+                <button class="filter-btn" data-filter="kids">
+                    <span data-lang-pt="Crianças" data-lang-en="Kids">Crianças</span>
+                </button>
+                <button class="filter-btn" data-filter="teens">
+                    <span data-lang-pt="Adolescentes" data-lang-en="Teens">Adolescentes</span>
+                </button>
+                <button class="filter-btn" data-filter="adults">
+                    <span data-lang-pt="Adultos" data-lang-en="Adults">Adultos</span>
+                </button>
+                <button class="filter-btn" data-filter="classes">
+                    <span data-lang-pt="Aulas" data-lang-en="Classes">Aulas</span>
+                </button>
+                <button class="filter-btn" data-filter="events">
+                    <span data-lang-pt="Eventos" data-lang-en="Events">Eventos</span>
+                </button>
+                <button class="filter-btn" data-filter="business">
+                    <span data-lang-pt="Inglês para Negócios" data-lang-en="Business English">Inglês para Negócios</span>
+                </button>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- As imagens serão adicionadas via JavaScript -->
+                <!-- Exemplo de estrutura:
+                <div class="gallery-item" data-category="kids">
+                    <img src="img/gallery/kids1.jpg" alt="Aula para crianças">
+                    <div class="gallery-overlay">
+                        <h4 data-lang-pt="Aula para crianças" data-lang-en="Kids class">Aula para crianças</h4>
+                        <p data-lang-pt="Atividades lúdicas e interativas" data-lang-en="Playful and interactive activities">Atividades lúdicas e interativas</p>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-nav modal-prev" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+            <div class="modal-caption">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Testimonials Section -->
     <section id="testimonials">
         <div class="container">
@@ -1147,6 +1397,7 @@
                         <li><a href="#home" data-lang-pt="Início" data-lang-en="Home">Início</a></li>
                         <li><a href="#about" data-lang-pt="Sobre Nós" data-lang-en="About">Sobre Nós</a></li>
                         <li><a href="#courses" data-lang-pt="Cursos" data-lang-en="Courses">Cursos</a></li>
+                        <li><a href="#gallery" data-lang-pt="Galeria" data-lang-en="Gallery">Galeria</a></li>
                         <li><a href="#contact" data-lang-pt="Contacto" data-lang-en="Contact">Contacto</a></li>
                     </ul>
                 </div>
@@ -1387,36 +1638,292 @@
             });
         });
         
-        // Initialize placeholders on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            switchLanguage('pt');
+        // Gallery functionality
+        const galleryGrid = document.getElementById('galleryGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryModal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        
+        // Sample gallery data - replace with your actual images
+        const galleryData = [
+            {
+                id: 1,
+                category: 'kids',
+                image: 'img/gallery/kids/kids01.jpg',
+                titlePt: 'Aula para crianças',
+                titleEn: 'Kids class',
+                descPt: 'Atividades lúdicas e interativas para crianças',
+                descEn: 'Playful and interactive activities for kids'
+            },
+            {
+                id: 2,
+                category: 'kids',
+                image: 'img/gallery/kids/kids02.jpg',
+                titlePt: 'Aprendendo através de jogos',
+                titleEn: 'Learning through games',
+                descPt: 'Jogos educativos para facilitar o aprendizado',
+                descEn: 'Educational games to facilitate learning'
+            },
+            {
+                id: 3,
+                category: 'teens',
+                image: 'img/gallery/kids/kids04.jpg',
+                titlePt: 'Aula para adolescentes',
+                titleEn: 'Teen class',
+                descPt: 'Metodologia adequada para adolescentes',
+                descEn: 'Appropriate methodology for teenagers'
+            },
+            {
+                id: 4,
+                category: 'teens',
+                image: 'img/gallery/kids/kids06.jpg',
+                titlePt: 'Conversação em grupo',
+                titleEn: 'Group conversation',
+                descPt: 'Prática de conversação em pequenos grupos',
+                descEn: 'Conversation practice in small groups'
+            },
+            {
+                id: 5,
+                category: 'adults',
+                image: 'img/gallery/adults/adultls01.jpg',
+                titlePt: 'Aula para adultos',
+                titleEn: 'Adult class',
+                descPt: 'Foco em comunicação prática do dia a dia',
+                descEn: 'Focus on practical everyday communication'
+            },
+            {
+                id: 6,
+                category: 'adults',
+                image: 'img/gallery/adults/adultls02.jpg',
+                titlePt: 'Avançado - Pronúncia',
+                titleEn: 'Advanced - Pronunciation',
+                descPt: 'Trabalhando a pronúncia e sotaque',
+                descEn: 'Working on pronunciation and accent'
+            },
+            {
+                id: 7,
+                category: 'classes',
+                image: 'img/gallery/class1.jpg',
+                titlePt: 'Ambiente de sala de aula',
+                titleEn: 'Classroom environment',
+                descPt: 'Salas equipadas para melhor aprendizado',
+                descEn: 'Equipped classrooms for better learning'
+            },
+            {
+                id: 8,
+                category: 'classes',
+                image: 'img/gallery/class/class01.jpg',
+                titlePt: 'Material didático',
+                titleEn: 'Teaching materials',
+                descPt: 'Materiais atualizados e contextualizados',
+                descEn: 'Updated and contextualized materials'
+            },
+            {
+                id: 9,
+                category: 'events',
+                image: 'img/gallery/event1.jpg',
+                titlePt: 'Evento cultural',
+                titleEn: 'Cultural event',
+                descPt: 'Celebrando a cultura anglófona',
+                descEn: 'Celebrating Anglophone culture'
+            },
+            {
+                id: 10,
+                category: 'events',
+                image: 'img/gallery/events/events01.jpg',
+                titlePt: 'Formatura de alunos',
+                titleEn: 'Student graduation',
+                descPt: 'Cerimônia de entrega de certificados',
+                descEn: 'Certificate award ceremony'
+            },
+            {
+                id: 11,
+                category: 'business',
+                image: 'img/gallery/business/business01.jpg',
+                titlePt: 'Inglês para Negócios',
+                titleEn: 'Business English',
+                descPt: 'Simulação de reuniões empresariais',
+                descEn: 'Business meeting simulations'
+            },
+            {
+                id: 12,
+                category: 'business',
+                image: 'img/gallery/business/business02.jpg',
+                titlePt: 'Treinamento corporativo',
+                titleEn: 'Corporate training',
+                descPt: 'Aulas in-company para empresas',
+                descEn: 'In-company classes for businesses'
+            }
+        ];
+        
+        // Current image index for modal navigation
+        let currentImageIndex = 0;
+        let filteredGalleryData = [...galleryData];
+        
+        // Function to generate gallery items
+        function generateGalleryItems(data) {
+            galleryGrid.innerHTML = '';
             
-            // Instruções para adicionar o logo:
-            console.log('Para adicionar o logo:');
-            console.log('1. Substitua o texto "ENGLISH FOREVER" no header por uma imagem');
-            console.log('2. Adicione este código dentro da div .logo:');
-            console.log('<img src="caminho/para/seu-logo.png" alt="English Forever Logo">');
-            console.log('3. Remova ou comente o texto atual se desejar apenas a imagem');
+            data.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-category', item.category);
+                galleryItem.setAttribute('data-index', index);
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${currentLang === 'pt' ? item.titlePt : item.titleEn}">
+                    <div class="gallery-overlay">
+                        <h4 data-lang-pt="${item.titlePt}" data-lang-en="${item.titleEn}">${currentLang === 'pt' ? item.titlePt : item.titleEn}</h4>
+                        <p data-lang-pt="${item.descPt}" data-lang-en="${item.descEn}">${currentLang === 'pt' ? item.descPt : item.descEn}</p>
+                    </div>
+                `;
+                
+                galleryItem.addEventListener('click', () => openModal(index, data));
+                galleryGrid.appendChild(galleryItem);
+            });
             
-            // Instructions for Formspree setup
-            console.log('\n=== CONFIGURAÇÃO DO FORMULÁRIO ===');
-            console.log('1. O formulário já está configurado para enviar para: englishforevernopt@gmail.com');
-            console.log('2. Usamos Formspree (gratuito) para processar os emails');
-            console.log('3. Para ativar completamente:');
-            console.log('   a) Vá para https://formspree.io');
-            console.log('   b) Crie uma conta gratuita');
-            console.log('   c) Confirme o email englishforevernopt@gmail.com');
-            console.log('   d) O formulário começará a funcionar automaticamente');
-            console.log('4. Alternativa: Altere o action do formulário para seu próprio script PHP');
+            // Update language for gallery items
+            updateGalleryLanguage();
+        }
+        
+        // Function to update gallery language
+        function updateGalleryLanguage() {
+            document.querySelectorAll('.gallery-overlay h4').forEach((el, index) => {
+                if (currentLang === 'pt') {
+                    el.textContent = filteredGalleryData[index].titlePt;
+                } else {
+                    el.textContent = filteredGalleryData[index].titleEn;
+                }
+            });
+            
+            document.querySelectorAll('.gallery-overlay p').forEach((el, index) => {
+                if (currentLang === 'pt') {
+                    el.textContent = filteredGalleryData[index].descPt;
+                } else {
+                    el.textContent = filteredGalleryData[index].descEn;
+                }
+            });
+        }
+        
+        // Function to open modal
+        function openModal(index, data) {
+            currentImageIndex = index;
+            filteredGalleryData = data;
+            
+            const item = data[index];
+            modalImage.src = item.image;
+            modalImage.alt = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalTitle.textContent = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalDescription.textContent = currentLang === 'pt' ? item.descPt : item.descEn;
+            
+            galleryModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Function to close modal
+        function closeModal() {
+            galleryModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Function to navigate to next image
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % filteredGalleryData.length;
+            const item = filteredGalleryData[currentImageIndex];
+            modalImage.src = item.image;
+            modalImage.alt = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalTitle.textContent = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalDescription.textContent = currentLang === 'pt' ? item.descPt : item.descEn;
+        }
+        
+        // Function to navigate to previous image
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + filteredGalleryData.length) % filteredGalleryData.length;
+            const item = filteredGalleryData[currentImageIndex];
+            modalImage.src = item.image;
+            modalImage.alt = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalTitle.textContent = currentLang === 'pt' ? item.titlePt : item.titleEn;
+            modalDescription.textContent = currentLang === 'pt' ? item.descPt : item.descEn;
+        }
+        
+        // Filter gallery by category
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active filter button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                if (filter === 'all') {
+                    filteredGalleryData = [...galleryData];
+                } else {
+                    filteredGalleryData = galleryData.filter(item => item.category === filter);
+                }
+                
+                generateGalleryItems(filteredGalleryData);
+            });
         });
         
-        // Função para adicionar logo (executada se você quiser substituir manualmente)
-        function addLogo(imageUrl) {
-            const logoDiv = document.querySelector('.logo');
-            if (imageUrl) {
-                logoDiv.innerHTML = `<img src="${imageUrl}" alt="English Forever Logo">`;
+        // Modal event listeners
+        modalClose.addEventListener('click', closeModal);
+        modalNext.addEventListener('click', nextImage);
+        modalPrev.addEventListener('click', prevImage);
+        
+        // Close modal when clicking outside the image
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeModal();
             }
-        }
+        });
+        
+        // Keyboard navigation for modal
+        document.addEventListener('keydown', (e) => {
+            if (galleryModal.style.display === 'flex') {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+        });
+        
+        // Initialize gallery on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize language
+            switchLanguage('pt');
+            
+            // Generate initial gallery
+            generateGalleryItems(galleryData);
+            
+            // Update language system to also update gallery
+            const originalSwitchLanguage = switchLanguage;
+            switchLanguage = function(lang) {
+                originalSwitchLanguage(lang);
+                updateGalleryLanguage();
+                
+                // Update modal content if open
+                if (galleryModal.style.display === 'flex') {
+                    const item = filteredGalleryData[currentImageIndex];
+                    modalTitle.textContent = lang === 'pt' ? item.titlePt : item.titleEn;
+                    modalDescription.textContent = lang === 'pt' ? item.descPt : item.descEn;
+                }
+            };
+            
+            // Instructions for adding images
+            console.log('=== GALERIA DE FOTOS ===');
+            console.log('Para adicionar suas próprias fotos:');
+            console.log('1. Adicione suas imagens na pasta img/gallery/');
+            console.log('2. Atualize o array galleryData no JavaScript com suas imagens');
+            console.log('3. Categorias disponíveis: kids, teens, adults, classes, events, business');
+            console.log('4. Cada item deve ter: id, category, image, titlePt, titleEn, descPt, descEn');
+            
+            console.log('\n=== FORMULÁRIO ===');
+            console.log('Lembre-se de confirmar o email no Formspree para ativar o envio de mensagens.');
+        });
     </script>
 </body>
 </html>
